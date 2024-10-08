@@ -1,0 +1,195 @@
+1. Asignación de variables
+
+En R, se pueden asignar valores a variables utilizando el operador <- o =.
+
+r
+Copiar código
+# Asignar un valor a una variable
+x <- 10    # Usando '<-'
+y = 20     # Usando '='
+
+# Mostrar el valor de la variable
+print(x)   # O simplemente escribir el nombre de la variable
+y          # Esto también imprime el valor
+
+
+2. Tipos de datos
+
+R tiene varios tipos de datos comunes:
+
+Números: enteros y decimales.
+Cadenas de texto: texto encerrado entre comillas (" ") o (' ').
+Booleanos: TRUE o FALSE.
+Vectores: secuencias de datos (como una lista en otros lenguajes).
+r
+Copiar código
+# Número
+num <- 3.14
+
+# Cadena de texto
+texto <- "Hola, Mundo!"
+
+# Booleano
+logico <- TRUE
+
+# Vector de números
+numeros <- c(1, 2, 3, 4, 5)   # Usamos la función c() para crear un vector
+
+
+3. Operaciones aritméticas
+
+Puedes realizar las operaciones matemáticas básicas:
+
+r
+Copiar código
+# Suma
+resultado_suma <- 5 + 3
+
+# Resta
+resultado_resta <- 10 - 4
+
+# Multiplicación
+resultado_multiplicacion <- 6 * 7
+
+# División
+resultado_division <- 20 / 4
+
+# Potencia
+resultado_potencia <- 2^3
+
+# Módulo (resto de división)
+resultado_modulo <- 7 %% 2
+
+
+4. Funciones básicas
+
+R tiene muchas funciones predefinidas, pero aquí hay algunas de las más comunes:
+
+r
+Copiar código
+# Calcular la media de un conjunto de números
+media <- mean(c(1, 2, 3, 4, 5))
+
+# Calcular la mediana
+mediana <- median(c(1, 2, 3, 4, 5))
+
+# Calcular la longitud de un vector (número de elementos)
+longitud <- length(c(1, 2, 3, 4, 5))
+
+# Obtener el valor mínimo y máximo de un vector
+minimo <- min(c(1, 2, 3, 4, 5))
+maximo <- max(c(1, 2, 3, 4, 5))
+
+
+5. Estructuras de control
+
+R admite estructuras de control básicas como if-else, for, while, etc.
+
+Condicionales: if, else if, else
+r
+Copiar código
+x <- 10
+
+if (x > 5) {
+    print("x es mayor que 5")
+} else if (x == 5) {
+    print("x es igual a 5")
+} else {
+    print("x es menor que 5")
+}
+Ciclo for
+r
+Copiar código
+# Imprimir los números del 1 al 5
+for (i in 1:5) {
+    print(i)
+}
+Ciclo while
+r
+Copiar código
+# Imprimir números mientras la condición sea verdadera
+contador <- 1
+while (contador <= 5) {
+    print(contador)
+    contador <- contador + 1
+}
+
+
+6. Funciones definidas por el usuario
+Puedes definir tus propias funciones en R:
+
+r
+Copiar código
+# Definir una función que sume dos números
+sumar <- function(a, b) {
+    resultado <- a + b
+    return(resultado)
+}
+
+# Llamar a la función
+resultado <- sumar(3, 4)
+print(resultado)
+
+
+7. Manipulación de datos con vectores
+
+Los vectores son una estructura de datos fundamental en R.
+
+r
+Copiar código
+# Crear un vector de números
+mi_vector <- c(2, 4, 6, 8, 10)
+
+# Acceder a un elemento del vector (el índice comienza en 1)
+mi_vector[1]   # Devuelve el primer elemento: 2
+
+# Seleccionar varios elementos (subconjunto)
+mi_vector[1:3]   # Devuelve los primeros tres elementos: 2, 4, 6
+
+
+8. Matrices
+
+Las matrices son arreglos bidimensionales en R.
+
+r
+Copiar código
+# Crear una matriz de 2x3
+mi_matriz <- matrix(c(1, 2, 3, 4, 5, 6), nrow=2, ncol=3)
+
+# Acceder a un elemento de la matriz (fila, columna)
+mi_matriz[1, 2]   # Devuelve el valor en la primera fila, segunda columna: 2
+
+# Mostrar la matriz completa
+print(mi_matriz)
+
+
+9. Data frames
+
+Un data frame es una tabla de datos donde las columnas pueden contener diferentes tipos de datos (similar a una hoja de cálculo).
+
+r
+Copiar código
+# Crear un data frame
+personas <- data.frame(
+    Nombre = c("Ana", "Luis", "Carlos"),
+    Edad = c(23, 30, 40),
+    Profesion = c("Ingeniera", "Doctor", "Profesor")
+)
+
+# Mostrar el data frame
+print(personas)
+
+# Acceder a una columna (por nombre)
+personas$Edad    # Devuelve las edades
+
+# Acceder a una fila específica (primera fila)
+personas[1, ]
+
+
+10. Comentarios
+Los comentarios se hacen con # y no se ejecutan.
+
+r
+Copiar código
+# Este es un comentario en R
+x <- 5  # Este es un comentario al final de una línea
