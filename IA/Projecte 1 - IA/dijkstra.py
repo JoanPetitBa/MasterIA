@@ -177,8 +177,8 @@ os.system("cls")
 # Create the Graph object
 G = Graph(graph)
 
-origen = "Barcelona"
-desti = "Valencia"
+origen = "Zaragoza"
+desti = "Castellon de la Plana"
 
 # Get shortest distances and predecessors
 distances, predecessors = G.shortest_distances(origen)
