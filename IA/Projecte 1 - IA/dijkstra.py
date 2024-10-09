@@ -202,20 +202,30 @@ os.system("cls")
 
 # CREAR UN OBJECTE Graph
 G = Graph(graph)
+camions = {
+    "camion1":("Barcelona","Tarragona"),
+    "camion2" : ("Teruel","Castellon de la Plana"),
+    "camion3": ("Huesca","Lleida")
+}
+
 
 # ESTABLIR ORIGEN I DESTÍ
-origen = "Girona"
-desti = "Castellon de la Plana"
+# origen = "Girona"
+# desti = "Castellon de la Plana"
 
-# OBTENIR LES DISTANCIES MES CURTES DES DE L'ORIGEN
-distances, predecessors = G.shortest_distances(origen)
+for camion in camions.keys():
+    origen = camions[camion][0]
+    desti = camions[camion][1]
 
-print("-"*80)
-# IMPRIMIR LA DISTANCIA MES CURTA FINS AL DESTÍ
-total_time = distances[desti]
-print(f"\nTrigaras {total_time}h en anar de {origen} a {desti}\n")
+    # OBTENIR LES DISTANCIES MES CURTES DES DE L'ORIGEN
+    distances, predecessors = G.shortest_distances(origen)
 
-# OBTENIR EL CAMI MES CURT ENTRE ORIGEN I DESTI
-path = G.shortest_path(origen, desti)
-print(f"El camí més curt és {', '.join(path)}\n")
-print("-"*80)
+    print("-"*80)
+    # IMPRIMIR LA DISTANCIA MES CURTA FINS AL DESTÍ
+    total_time = distances[desti]
+    print(f"\nTrigaras {total_time}h en anar de {origen} a {desti}\n")
+
+    # OBTENIR EL CAMI MES CURT ENTRE ORIGEN I DESTI
+    path = G.shortest_path(origen, desti)
+    print(f"El camí més curt és {', '.join(path)}\n")
+    print("-"*80)
