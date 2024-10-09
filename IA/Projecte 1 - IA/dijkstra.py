@@ -126,67 +126,96 @@ class Graph:
         self.graph[node1][node2] = weight  # Add a connection to its neighbor
 
     def shortest_distances(self, source: str):
-        # Initialize the values of all nodes with infinity
+        # ESTABLIR TOTES LES DISTANCIES A INFINIT
         distances = {node: float("inf") for node in self.graph}
-        distances[source] = 0  # Set the source value to 0
+        
+        # ESTABLIR LA DISTANCIA DE L'ORIGEN A 0
+        distances[source] = 0  
 
-        # Initialize a priority queue
+        # INICIALITZAR UNA CUA DE PRIORITAT AMB L'ORIGEN COM A PRIMER ELEMENT (CUA ORDENADA PER WEIGHT)
         pq = [(0, source)]
         heapify(pq)
 
-        # Create a set to hold visited nodes
+        # CREAR UN SET PER GUARDAR ELS NODES VISITATS
         visited = set()
 
-        # Predecessors dictionary to reconstruct paths
+        # CREAR DICCIONARI DE NODES PREDECESSORS PER RECONSTRUIR EL CAMI
         predecessors = {node: None for node in self.graph}
 
-        while pq:  # While the priority queue isn't empty
+        # MENTRE LA CUA DE PRIORITAT NO ESTIGUI BUIDA
+        while pq:
+
+            # DEFINIR EL NODE ACTUAL I LA DISTANCIA DES DE L'ORIGEN O NODE PREVI
             current_distance, current_node = heappop(pq)
 
+            # SI EL NODE ESTA DINTRE DEL SET DE VISITATS, SALTAR AL INICI DEL BUCLE
             if current_node in visited:
                 continue 
+
+            # AFEGIR EL NODE AL SET DE VISITATS
             visited.add(current_node)
 
+            # BUCLE PER ITERAR SOBRE CADA NODE VEÏ AMB EL SEU WEIGHT
             for neighbor, weight in self.graph[current_node].items():
-                # Calculate the distance from current_node to the neighbor
+                
+                # CALCULAR LA DISTANCIA DEL NODE ACTUAL AL VEI SUMANT LA DISTANCIA JA RECORREGUDA
                 tentative_distance = current_distance + weight
+
+                # SI LA DISTANCIA CALCULADA ES MÉS PETTIA QUE LA DISTANCIA DEFINIDA
                 if tentative_distance < distances[neighbor]:
+
+                    # MODIFICAR LA DISTANCIA DEL VEI AMB LA NOVA 'tentative_distance'                    
                     distances[neighbor] = tentative_distance
+
+                    # DEFINIR QUE EL PREDECESOR DEL VEI ES EL NODE ACTUAL
                     predecessors[neighbor] = current_node
+
+                    # AFEGIR A LA CUA DE PRIORITAT LA DISTANCIA I EL VEI DEL NODE ACTUAL
                     heappush(pq, (tentative_distance, neighbor))
 
         return distances, predecessors
        
     def shortest_path(self, source: str, target: str):
-        # Generate the predecessors dict
+        # GENERAR EL DICCIONARI DE PREDECESSORS
         _, predecessors = self.shortest_distances(source)
 
         path = []
+
+        #ESTABLIR COM A CURRENT NODE EL NODE AL QUE VOLEM ARRIBAR
         current_node = target
 
-        # Backtrack from the target node using predecessors
+        # FER LA RUTA INVERSA A PARTIR DEL DICCIONARI DE PREDECESSORS
         while current_node:
+            # AFEGIR EL NODE ACTUAL AL PATH
             path.append(current_node)
+
+            # ACTUALITZAR EL NODE ACTUAL AMB EL PREDECESSOR D'AQUEST
             current_node = predecessors[current_node]
 
-        # Reverse the path and return it
+        # REVERTIR L'ORDRE DEL PATH PERQUE QUEDI ORDENAR DE ORIGEN A DESTI
         path.reverse()
+
+        # RETORNA EL PATH SI EL PRIMER ELEMENT COINCIDEIX AMB L'ORGIEN ESTABLERT
         return path if path[0] == source else []
 
 os.system("cls")
-# Create the Graph object
+
+# CREAR UN OBJECTE Graph
 G = Graph(graph)
 
-origen = "Zaragoza"
+# ESTABLIR ORIGEN I DESTÍ
+origen = "Girona"
 desti = "Castellon de la Plana"
 
-# Get shortest distances and predecessors
+# OBTENIR LES DISTANCIES MES CURTES DES DE L'ORIGEN
 distances, predecessors = G.shortest_distances(origen)
 
-# Print the total shortest distance to the destination
+print("-"*80)
+# IMPRIMIR LA DISTANCIA MES CURTA FINS AL DESTÍ
 total_time = distances[desti]
-print(f"The shortest time from {origen} to {desti} is {total_time}h")
+print(f"\nTrigaras {total_time}h en anar de {origen} a {desti}\n")
 
-# Get the shortest path
+# OBTENIR EL CAMI MES CURT ENTRE ORIGEN I DESTI
 path = G.shortest_path(origen, desti)
-print(f"The shortest path from {origen} to {desti} is {', '.join(path)}")
+print(f"El camí més curt és {', '.join(path)}\n")
+print("-"*80)
