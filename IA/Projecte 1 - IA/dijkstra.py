@@ -204,8 +204,8 @@ os.system("cls")
 G = Graph(graph)
 camions = {
     "camion1":("Barcelona","Tarragona"),
-    "camion2" : ("Teruel","Castellon de la Plana"),
-    "camion3": ("Huesca","Lleida")
+    "camion2" : ("Valencia","Castellon de la Plana"),
+    "camion3": ("Huesca","Zaragoza")
 }
 
 
